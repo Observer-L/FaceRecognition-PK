@@ -1,6 +1,9 @@
 # face++
-APIKEY = 'your face++ api key'
-APISECRET = 'your face++ api secret'
+facePP_config = {
+    'APIKEY': 'your face++ api key',
+    'APISECRET': 'your face++ api secret',
+    'REQUEST_URL_V3': 'https://api-cn.faceplusplus.com/facepp/v3/detect'
+}
 
 # baidu
 baidu_config = {
@@ -12,4 +15,3 @@ baidu_config = {
 }
 
 # azure
-
