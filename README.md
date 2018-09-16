@@ -1,0 +1,27 @@
+# 人脸识别 大PK
+
+## Setup
+
+``` bash
+# install dependencies
+pipenv install 
+
+# change the config.py file under the config floder
+{
+    'APIKEY': 'your api key'
+    ...
+}
+
+# try using the APIs to recongize face
+# cd api/
+
+# run the main.py and see the finally result
+!! not completed yet !!
+!!  To be continued  !!
+```
+
+For a detailed explanation on how things work, check out these API documents:  
+1. [Azure face API doc](https://dev.cognitive.azure.cn/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236)  
+2. [Baidu face API doc](https://ai.baidu.com/docs#/Face-Detect-V3/top)   
+3. [Face++ face API doc](https://console.faceplusplus.com.cn/documents/4888373)
+.
