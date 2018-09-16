@@ -15,3 +15,7 @@ baidu_config = {
 }
 
 # azure
+azure_config = {
+    'APPKEY': 'your Azure app key',
+    'REQUEST_URL': 'https://api.cognitive.azure.cn/face/v1.0/detect'
+}
