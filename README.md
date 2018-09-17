@@ -12,10 +12,9 @@ pipenv install
     ...
 }
 
-# try using the APIs to recongize face
-# cd api/
-
-# run the main.py and see the finally result
+# run the server(main.py) and see the finally result
+1. python main.py
+2. open the index.html in the root directory
 !! not completed yet !!
 !!  To be continued  !!
 ```

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人脸识别 - PK</title>
+    <link rel="stylesheet" href="app/static/style.css">
+</head>
+<body>
+<div class="container">
+    <form>
+        <div class="result">
+            <div class="img-results">
+                <img src="app/static/person-placeholder.jpg" id="pic">
+            </div>
+            <div class="json-results"></div>
+            <!--<div class="desc"><h1>说明</h1></div>-->
+        </div>
+
+        <div class="form-controller">
+            <!--<input type="text" placeholder="请输入图片URL" id="img_url_input" value="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/800px-Donald_Trump_official_portrait.jpg">-->
+            <input type="text" placeholder="请输入图片URL" id="img_url_input" value="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537109119958&di=184ceb74e77b081542163c6cea750822&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn11%2F709%2Fw400h309%2F20180319%2Ff469-fyskeuc0782277.jpg">
+            <!--<input type="text" placeholder="请输入图片URL" id="img_url_input">-->
+            <button id="submit">识别</button>
+        </div>
+    </form>
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.1.min.js"></script>
+<script src="app/static/main.js"></script>
+</body>
+</html>

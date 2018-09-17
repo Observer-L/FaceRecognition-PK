@@ -1,0 +1,64 @@
+/*layout*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: #eee;
+}
+form {
+    position: relative;
+}
+.result {
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+.result div {
+    width: 30%;
+    height: 500px;
+    background: #f4f4f4;
+}
+.img-results {
+    padding: 20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+}
+.img-results>img {
+    height: 100%;
+    width: 100%;
+}
+
+.json-results {
+    flex: 1;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    overflow: scroll;
+    font-size: 16px;
+}
+
+.form-controller {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+.flash {
+    position: absolute;
+    background: #eee;
+    color: tomato;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    bottom: 20px;
+    left: 20px;
+}
+
+.info {
+    font-weight: bold;
+    color: tomato;
+}
