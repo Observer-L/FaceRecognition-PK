@@ -14,8 +14,10 @@ $(function () {
                 dataType: 'json',
                 success: function (jsonData) {
                     $('#pic').attr('src', $img_url);
-                    data = formatJsonData(jsonData);
-                    $('.json-results').html(data)
+                    bfData = formatJsonData(jsonData['BaiduAI']);
+                    afData = formatJsonData(jsonData['Azure']);
+                    $('.json-results').html(bfData);
+                    $('.azure-results').html(afData)
                 },
                 error:function(xhr,textStatus){
                     console.log(textStatus)
@@ -27,14 +29,23 @@ $(function () {
         } else {
             alert('请填入图片URL')
         }
-    })
-    
+    });
+
     var formatJsonData = function (jsonData) {
         template = '';
         for (var face of jsonData) {
             for (info in face) {
-                template += `<pre><span class="info">${info}</span>：${JSON.stringify(face[info])}</pre>`;
-                console.log(info, face[info])
+                faceInfo = face[info];
+                str = JSON.stringify(faceInfo);
+
+                if (typeof faceInfo === 'object') {
+                    attrs = str.substr(1, str.length-2).replace(/,/g, ',<br>');
+                    prettyPrintInfo = '{<br>' + attrs + '<br>}';
+                    template += `<pre><span class="info">${info}</span>：${prettyPrintInfo}</pre>`;
+                } else {
+                    template += `<pre><span class="info">${info}</span>：${str}</pre>`;
+                }
+
             }
             template += '<hr>'
         }
