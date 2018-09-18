@@ -4,26 +4,50 @@
     <meta charset="UTF-8">
     <title>人脸识别 - PK</title>
     <link rel="stylesheet" href="app/static/style.css">
+    <link rel="icon" href="app/static/favicon.ico" sizes="16x16" type="image/png">
 </head>
 <body>
 <div class="container">
     <form>
-        <div class="result">
-            <div class="img-results">
+        <div class="result-wrapper">
+            <div class="img-wrapper">
                 <img src="app/static/person-placeholder.jpg" id="pic">
             </div>
-            <div class="json-results"></div>
-            <div class="desc azure-results"></div>
+            <div class="azure result">
+                <h2>Azure</h2>
+                <div class="azure-results"></div>
+            </div>
+            <div class="baidu result">
+                <h2>BaiduAI</h2>
+                <div class="baidu-results"></div>
+            </div>
+            <div class="facepp result">
+                <h2>Face++</h2>
+                <div class="facepp-results"></div>
+            </div>
         </div>
 
-        <div class="form-controller">
-            <!--<input type="text" placeholder="请输入图片URL" id="img_url_input" value="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/800px-Donald_Trump_official_portrait.jpg">-->
+    </form>
+    <div class="form-controller">
+        <div>
             <input type="text" placeholder="请输入图片URL" id="img_url_input" value="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537109119958&di=184ceb74e77b081542163c6cea750822&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn11%2F709%2Fw400h309%2F20180319%2Ff469-fyskeuc0782277.jpg">
-            <!--<input type="text" placeholder="请输入图片URL" id="img_url_input">-->
             <button id="submit">识别</button>
         </div>
-    </form>
+        <div class="options">
+            <img class="option" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537108684508&di=476cb0ebb0e155bf5e62c22987ca3b99&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2016%2F05%2F11%2F146297049377754834.JPEG" alt="伍迪艾伦" title="伍迪艾伦">
+            <img class="option" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/800px-Donald_Trump_official_portrait.jpg" alt="川普" title="川普">
+            <img class="option" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537109119958&di=184ceb74e77b081542163c6cea750822&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn11%2F709%2Fw400h309%2F20180319%2Ff469-fyskeuc0782277.jpg" alt="unnatural" title="unnatural">
+            <img class="option" src="https://img2.jiemian.com/101/original/20180507/152570134248412300_a580x330.jpg" alt="复仇者联盟" title="复仇者联盟">
+            <img class="option" src="http://i2.chinanews.com/simg/hd/2018/02/07/36bd61e148ee4eb9a53793a43486e2ba.jpg" alt="景深干扰" title="景深干扰">
+        </div>
+    </div>
+    <footer>
+        <div class="desc-wrapper">
+            <div class="desc-author"><a href="https://github.com/Observer-L" target="_blank">Observer-L</a></div>
+        </div>
+    </footer>
 </div>
+<a href="https://github.com/Observer-L/FaceRecognition-PK" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="app/static/forkme_left_darkblue.png" alt="Fork me on GitHub"></a>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.1.min.js"></script>
 <script src="app/static/main.js"></script>
 </body>

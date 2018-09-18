@@ -1,52 +1,111 @@
-/*layout*/
+html, body {
+    height: 100%;
+}
 body {
     margin: 0;
     padding: 0;
+    background: #eee;
 }
 
 .container {
-    background: #eee;
+    position: relative;
+    min-height: 100%;
+    padding: 0 20px;
+    overflow: hidden;
 }
 form {
     position: relative;
 }
-.result {
+.result-wrapper {
     height: 600px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-}
-.result div {
-    width: 30%;
-    height: 500px;
     background: #f4f4f4;
 }
-.img-results {
-    padding: 20px;
-    box-sizing: border-box;
+.result-wrapper>div {
+    height: 500px;
+}
+
+.facepp-results, .baidu-results, .azure-results {
+    overflow-x: hidden;
+}
+
+.img-wrapper {
+    width: 460px;
     vertical-align: middle;
     text-align: center;
+    overflow: hidden;
 }
-.img-results>img {
+.img-wrapper>img {
     height: 100%;
     width: 100%;
 }
 
-.json-results, .azure-results {
+.result-wrapper .result {
+    position: relative;
     flex: 1;
     padding: 5px 20px;
     box-sizing: border-box;
-    overflow: scroll;
     font-size: 14px;
+    overflow-y: scroll;
+}
+.result-wrapper .result>h2 {
+    font-weight: bold;
+    background: #fff;
+    text-align: center;
+    margin: 5px 0;
+}
+.azure>h2 {
+    color: #005ba1;
+}
+.baidu>h2 {
+    color: #38f;
+}
+.facepp>h2 {
+    color: #1d1d1d;
 }
 
 .form-controller {
-    position: absolute;
-    bottom: 0;
-    left: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
 }
 
+.options {
+    height: 100px;
+    margin: 20px;
+}
+.options>img {
+    width: 100px;
+    height: 100%;
+    transition: all .2s;
+}
+.options>img:hover {
+    transform: scale(1.1);
+}
+
+
+#img_url_input {
+    width: 200px;
+    height: 26px;
+    border: none;
+}
+#submit {
+    width: 50px;
+    height: 26px;
+    border: none;
+    border-radius: 4px;
+    background: #aaa;
+    color: #fff;
+    outline: none;
+}
+#submit:active {
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
 .flash {
     position: absolute;
     background: #eee;
@@ -61,4 +120,27 @@ form {
 .info {
     font-weight: bold;
     color: tomato;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #1d1d1d;
+    color: #fff;
+    width: 100%;
+}
+
+.desc-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.desc-wrapper>div {
+    font-size: 14px;
+}
+.desc-author>a {
+    color: #fff;
+    text-decoration: none;
 }

@@ -5,7 +5,9 @@ from urllib import parse
 import os
 
 from utils import json_byte_to_dict, img_to_base64
-from config.config import baidu_config
+import sys
+sys.path.append("..")
+from config import baidu_config
 
 
 class Baiduface:
@@ -31,7 +33,10 @@ class Baiduface:
         host = self.host.format(client_id=client_id, client_secret=client_secret)
         request = urllib.request.Request(host)
         request.add_header('Content-Type', 'application/json; charset=UTF-8')
-        response = urllib.request.urlopen(request)
+        try:
+            response = urllib.request.urlopen(request)
+        except Exception as e:
+            return {'error': str(e)}
         content = response.read()
         token_dict = json_byte_to_dict(content)
         access_token = token_dict.get('access_token')
@@ -54,6 +59,8 @@ class Baiduface:
         URL地址(可能由于网络等原因导致下载图片时间过长)；
         FACE_TOKEN: 人脸图片的唯一标识，调用人脸检测接口时，会为每个人脸图片赋予一个唯一的FACE_TOKEN，同一张图片多次检测得到的FACE_TOKEN是同一个。
         """
+        if not isinstance(self.access_token, str) and self.access_token['error']:
+            return self.access_token
 
         params = {
             "face_field": "age,beauty,expression,face_shape,gender,glasses,landmark,race,quality",  # 请不要用空格分隔
@@ -71,8 +78,7 @@ class Baiduface:
             params['image_type'] = 'URL'
 
         params = parse.urlencode(params).encode(encoding='UTF-8')
-        access_token = self.access_token
-        request_url = baidu_config['REQUEST_URL_V3'] + "?access_token=" + access_token
+        request_url = baidu_config['REQUEST_URL_V3'] + "?access_token=" + self.access_token
 
         request = urllib.request.Request(request_url, data=params)
         request.add_header('Content-Type', 'application/x-www-form-urlencoded')
@@ -81,38 +87,14 @@ class Baiduface:
         face_info_dict = json_byte_to_dict(content)
         return(face_info_dict)
 
-    def get_preson_info(self, face_info_dict):
-        """
-        返回基本的识别信息
-        :param face_info_dict:
-        :return: info_dict
-        """
-        info_dict = {}
-        result = face_info_dict['result']
-        face_list = result['face_list'][0]  # 先处理1个
-        info_dict['face_num'] = result['face_num']  # 脸数， 可通过max_face_num设定
-        info_dict['location'] = face_list['location']   # 脸部定位
-        info_dict['age'] = face_list['age']
-        info_dict['beauty'] = face_list['beauty']   # 颜值
-        info_dict['gender'] = face_list['gender']['type']
-        info_dict['glasses'] = face_list['glasses']['type']
-        info_dict['race'] = face_list['race']['type']
-        info_dict['face_shape'] = face_list['face_shape']['type']
-        return info_dict
+
 
 
 
 if __name__ == '__main__':
     bf = Baiduface()
     # img_path = os.path.abspath(os.path.dirname(os.getcwd())) + r'\images\trump.jpg'    # 特朗普怒竖指
-    img_path = os.path.abspath(os.path.dirname(os.getcwd())) + r'\images\einstein.jpg'    # 爱因斯坦吐舌头
-    # 伍迪艾伦忧郁
-    img_url = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537108684508&di=476cb0ebb0e155bf5e62c22987ca3b99&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2016%2F05%2F11%2F146297049377754834.JPEG'
-    # 低像素，多人照片
     img_url_more = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537109119958&di=184ceb74e77b081542163c6cea750822&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn11%2F709%2Fw400h309%2F20180319%2Ff469-fyskeuc0782277.jpg'
-
-    # info_dict = bf.reconize_face(img_path=img_path)
-    # info_dict = bf.reconize_face(img_url=img_url)
     info_dict = bf.reconize_face(img_url=img_url_more)
-    print(bf.get_preson_info(info_dict))
+    print(info_dict)
 

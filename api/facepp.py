@@ -2,8 +2,10 @@ import os
 import urllib.request
 from urllib import parse
 
-from config.config import facePP_config
 from utils import json_byte_to_dict, img_to_base64
+import sys
+sys.path.append("..")
+from config import facePP_config
 
 
 class FacePP:
@@ -33,29 +35,14 @@ class FacePP:
             params['image_url'] = img_url
 
         params = parse.urlencode(params).encode('utf-8')
-        response = urllib.request.urlopen(self.url, params)
+        try:
+            response = urllib.request.urlopen(self.url, params)
+        except Exception as e:
+            return {'error': str(e)}
         content = response.read()
         face_info_dict = json_byte_to_dict(content)
         return face_info_dict
 
-    def get_preson_info(self, face_info_dict):
-        """
-        返回基本的识别信息
-        :param face_info_dict:
-        :return: info_dict
-        """
-        info_dict = {}
-        faces = face_info_dict['faces']
-        face_one = faces[0]  # 先处理1个
-        attrs = face_one['attributes']
-        info_dict['face_rectangle'] = face_one['face_rectangle']
-        info_dict['emotion'] = attrs['emotion']
-        info_dict['gender'] = attrs['gender']
-        info_dict['age'] = attrs['age']
-        info_dict['eyestatus'] = attrs['eyestatus']  # 左右眼睛状态（合闭、眼镜、是否为黑框眼镜 @_@ ）
-        info_dict['headpose'] = attrs['headpose']
-        info_dict['ethnicity'] = attrs['ethnicity']  # 种族
-        return info_dict
 
 
 if __name__ == '__main__':
@@ -64,8 +51,5 @@ if __name__ == '__main__':
     # 低像素，多人照片
     img_url_more = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537109119958&di=184ceb74e77b081542163c6cea750822&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn11%2F709%2Fw400h309%2F20180319%2Ff469-fyskeuc0782277.jpg'
     fpp = FacePP()
-    # fpp.get_info(img_path=img_path)
-    # print(fpp.get_info(img_url=img_url))
-    # print(fpp.reconize_face(img_url=img_url_more))
     face_info_dict = fpp.reconize_face(img_url=img_url_more)
-    print(fpp.get_preson_info(face_info_dict))
+    print(face_info_dict)

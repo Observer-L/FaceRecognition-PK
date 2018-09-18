@@ -1,6 +1,5 @@
 class AzureFaceModel:
     def __init__(self, result):
-
         self.face_num = len(result)
         self.faces = []
         for face in result:

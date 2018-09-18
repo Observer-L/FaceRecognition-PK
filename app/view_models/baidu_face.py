@@ -1,5 +1,6 @@
 class BaiduFaceModel:
     def __init__(self, result):
+        result = result['result']
         self.face_num = result['face_num']
         self.face_list = result['face_list']
         self.faces = []
@@ -16,7 +17,3 @@ class BaiduFaceModel:
             face_info['location'] = face['location']
 
             self.faces.append(face_info)
-
-
-
-

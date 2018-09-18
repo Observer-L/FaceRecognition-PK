@@ -1,7 +1,10 @@
 $(function () {
-    $('#submit').click(function (e) {
+    $("#submit, .option").click(function (e) {
         e.preventDefault();
-        $img_url = $('#img_url_input').val();
+        console.log(e.target.currentSrc)
+
+        $img_url = e.target.currentSrc ? e.target.currentSrc : $('#img_url_input').val();
+
         if ($img_url) {
             faces = $.ajax({
                 url: 'http://127.0.0.1:5000/face',
@@ -10,14 +13,18 @@ $(function () {
                 data: {
                     img_url: $img_url
                 },
-                timeout: 5000,
+                timeout: 10000,
                 dataType: 'json',
                 success: function (jsonData) {
                     $('#pic').attr('src', $img_url);
-                    bfData = formatJsonData(jsonData['BaiduAI']);
-                    afData = formatJsonData(jsonData['Azure']);
-                    $('.json-results').html(bfData);
-                    $('.azure-results').html(afData)
+                    console.log(jsonData)
+
+                    afData = jsonData['Azure']['error'] ? JSON.stringify(jsonData['Azure']['error']) : formatJsonData(jsonData['Azure']);
+                    bfData = jsonData['BaiduAI']['error'] ? JSON.stringify(jsonData['BaiduAI']['error']) : formatJsonData(jsonData['BaiduAI']);
+                    ffData = jsonData['Face++']['error'] ? JSON.stringify(jsonData['Face++']['error']) : formatJsonData(jsonData['Face++']);
+                    $('.azure-results').html(afData);
+                    $('.baidu-results').html(bfData);
+                    $('.facepp-results').html(ffData)
                 },
                 error:function(xhr,textStatus){
                     console.log(textStatus)
