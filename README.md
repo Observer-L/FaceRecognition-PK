@@ -14,9 +14,7 @@ pipenv install
 
 # run the server(main.py)
 1. python main.py
-2. open the index.html in the root directory
-!! not completed yet !!
-!!  To be continued  !!
+2. open the index.html in the root directory and play it!
 ```
 
 For a detailed explanation on how things work, check out these API documents:  

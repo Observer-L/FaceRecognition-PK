@@ -27,7 +27,7 @@ class Azureface:
         params = urllib.parse.urlencode({
             'returnFaceId': returnFaceId,
             'returnFaceLandmarks': returnFaceLandmarks,
-            'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses',  # TODO: 更多特征
+            'returnFaceAttributes': 'age,gender,emotion,headPose,smile,hair,facialHair,glasses,makeup,accessories,blur,exposure,noise',  # TODO: 更多特征
         })
         headers = {
             'Content-Type': 'application/json',

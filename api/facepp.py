@@ -26,7 +26,7 @@ class FacePP:
             'api_key': self.api_key,
             'api_secret': self.api_secret,
             'return_landmark': return_landmark,
-            'return_attributes': 'gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity'   # 请不要用空格分隔
+            'return_attributes': 'gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,skinstatus'   # 请不要用空格分隔
         }
 
         if img_path:
