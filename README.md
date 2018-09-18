@@ -6,13 +6,13 @@
 # install dependencies
 pipenv install 
 
-# change the config.py file under the config floder
+# change the config.py file
 {
     'APIKEY': 'your api key'
     ...
 }
 
-# run the server(main.py) and see the finally result
+# run the server(main.py)
 1. python main.py
 2. open the index.html in the root directory
 !! not completed yet !!
